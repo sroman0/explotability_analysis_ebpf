@@ -1,0 +1,116 @@
+\documentclass{report}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{tabularx}
+\usepackage{appendix}
+\usepackage[section]{placeins}
+\usepackage[left=1.5in, right=1in, top=1in, bottom=1.25in]{geometry}
+\usepackage{float}
+\usepackage{subfiles}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+\usepackage{minted}
+\usepackage{titlesec}
+
+
+\titleformat{\chapter}[hang]{\huge\bfseries}{\thechapter}{1em}{}
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
+\definecolor{torinoBlue}{RGB}{31, 73, 125}
+
+\begin{document}
+
+
+\begin{titlepage}
+    \centering
+    \vspace*{1.5cm}
+
+    \includegraphics[width=0.4\textwidth]{img/logo1.jpg}\\[1cm]
+    {\LARGE \textsc{Politecnico di Torino}}\\[1.5cm] 
+
+    \vspace{2cm} 
+    
+    \color{torinoBlue} 
+    \vspace{0.4cm}
+    {\Huge \bfseries eBPF: New Exploits}\\
+    \vspace{0.3cm}
+    {\Large \bfseries Security, Verification and Testing Project}
+    \vspace{0.2cm}
+    \color{black} 
+
+    \vspace{3cm}
+
+
+    \vfill
+    \large{Simone Romano}\\
+    \textit{s344024}\\
+    \vspace{1cm}
+
+    
+
+    \begin{flushleft}
+    \centering
+        \begin{tabular}{cc}
+        Prof. Riccardo Sisto  &  Prof. Rosario Rizza \\
+        \end{tabular}
+    \end{flushleft}
+
+    \vspace{1cm}
+
+
+    {\large \today}
+
+\end{titlepage}
+
+    \newpage
+
+    \tableofcontents
+
+    \newpage
+
+    \chapter{Vulnerabilities}
+
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+    \section{CVE-2024-45020}
+    \subfile{exploits/CVE-2024-45020}
+
+    \newpage
+
+    \section{CVE-2024-42072}
+    \subfile{exploits/CVE-2024-42072}
+
+    \newpage
+
+    \section{CVE-2023-39191}
+    \subfile{exploits/CVE-2023-39191}
+
+    \newpage
+
+\end{document}
