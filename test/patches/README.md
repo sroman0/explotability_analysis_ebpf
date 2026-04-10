@@ -1,0 +1,9 @@
+## Patches
+Some kernel versions need patches in order to work
+| Filename | Description | Building error | URL |
+| :------: | :---------: | :------------: | :-: |
+| *_fix_objtool.patch | x86/entry: Build thunk_$(BITS) only if CONFIG_PREEMPTION=y | arch/x86/entry/thunk_64.o: warning: objtool: missing symbol table | [Commit URL](https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=de979c83574abf6e78f3fa65b716515c91b2613d) |
+| *_force_page_size.patch | x86/build/64: Force the linker to use 2MB page size | / | [Commit URL](https://web.git.kernel.org/pub/scm/linux/kernel/git/tip/tip.git/commit/?id=e3d03598e8ae7d195af5d3d049596dec336f569f) |
+| *_PC32_bug.patch | x86: Treat R_X86_64_PLT32 as R_X86_64_PC32 | Unsupported relocation type: R_X86_64_PLT32 (4) | [Commit URL](https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=b21ebf2fb4cde1618915a97cc773e287ff49173e) |
+| *_fix_force_order.patch | x86/boot/compressed: Don't declare __force_order in kaslr_64.c | arch/x86/boot/compressed/pgtable_64.o:(.bss+0x0): multiple definition of `__force_order'; arch/x86/boot/compressed/pagetable.o:(.bss+0x0): first defined here | [Commit URL](https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=df6d4f9db79c1a5d6f48b59db35ccd1e9ff9adfc) |
+| *_remove_warnings_strlcpy.patch | tools lib: Fix builds when glibc contains strlcpy() | error: redundant redeclaration of ‘strlcpy’ [-Werror=redundant-decls] | [Commit URL](https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=6c4798d3f08b81c2c52936b10e0fa872590c96ae)

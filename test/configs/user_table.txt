@@ -1,0 +1,2 @@
+# <username> <uid> <group> <gid> <password> <home> <shell> <groups> <comment>
+user -2 svt-project -2 - /home/user /bin/sh - SVTUser
