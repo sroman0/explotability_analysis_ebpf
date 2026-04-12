@@ -1,0 +1,137 @@
+======================================================================
+CVE CANDIDATE - CATEGORY='verifier' ONLY + NO EXPLOIT + NOT ANALYZED
+======================================================================
+
+  1. CVE-2024-58100
+     CVSS: nan
+     Title: bpf: check changes_pkt_data property for extension
+     Category: verifier
+
+  2. CVE-2024-53125
+     CVSS: nan
+     Title: bpf: sync_linked_regs() must preserve subreg_def
+     Category: verifier
+
+  3. CVE-2024-45020
+     CVSS: 5.5 MEDIUM
+     Title: bpf: Fix a kernel verifier crash in stacksafe()
+     Category: verifier
+
+  4. CVE-2024-43910
+     CVSS: 5.5 MEDIUM
+     Title: bpf: add missing check_func_arg_reg_off() to preve
+     Category: verifier
+
+  5. CVE-2024-43838
+     CVSS: 5.5 MEDIUM
+     Title: bpf: fix overflow check in adjust_jmp_off()
+     Category: verifier
+
+  6. CVE-2024-43837
+     CVSS: 5.5 MEDIUM
+     Title: bpf: Fix null pointer dereference in resolve_prog_
+     Category: verifier
+
+  7. CVE-2024-42151
+     CVSS: 5.5 MEDIUM
+     Title: bpf: mark bpf_dummy_struct_ops.test_1 parameter as
+     Category: verifier
+
+  8. CVE-2024-42072
+     CVSS: 7.8 HIGH
+     Title: bpf: Fix may_goto with negative offset.
+     Category: verifier
+
+  9. CVE-2024-41003
+     CVSS: nan
+     Title: bpf: Fix reg_set_min_max corruption of fake_reg
+     Category: verifier
+
+ 10. CVE-2023-53024
+     CVSS: nan
+     Title: bpf: Fix pointer-leak due to insufficient speculat
+     Category: verifier
+
+ 11. CVE-2022-49878
+     CVSS: 5.5 MEDIUM
+     Title: bpf, verifier: Fix memory leak in array reallocati
+     Category: verifier
+
+ 12. CVE-2022-49837
+     CVSS: 5.5 MEDIUM
+     Title: bpf: Fix memory leaks in __check_func_call
+     Category: verifier
+
+ 13. CVE-2022-49658
+     CVSS: nan
+     Title: bpf: Fix insufficient bounds propagation from adju
+     Category: verifier
+
+ 14. CVE-2019-7308
+     CVSS: 5.6 MEDIUM
+     Title: nan
+     Category: verifier
+
+ 15. CVE-2017-17864
+     CVSS: 3.3 LOW
+     Title: nan
+     Category: verifier
+
+ 16. CVE-2017-17863
+     CVSS: 7.8 HIGH
+     Title: CVE-2017-17863
+     Category: verifier
+
+ 17. CVE-2017-17862
+     CVSS: 5.5 MEDIUM
+     Title: nan
+     Category: verifier
+
+ 18. CVE-2017-17857
+     CVSS: 7.8 HIGH
+     Title: nan
+     Category: verifier
+
+ 19. CVE-2017-17856
+     CVSS: 7.8 HIGH
+     Title: nan
+     Category: verifier
+
+ 20. CVE-2017-17855
+     CVSS: 7.8 HIGH
+     Title: nan
+     Category: verifier
+
+ 21. CVE-2017-17854
+     CVSS: 7.8 HIGH
+     Title: nan
+     Category: verifier
+
+ 22. CVE-2017-17853
+     CVSS: 7.8 HIGH
+     Title: nan
+     Category: verifier
+
+ 23. CVE-2017-17852
+     CVSS: 7.8 HIGH
+     Title: nan
+     Category: verifier
+
+ 24. CVE-2017-16996
+     CVSS: 7.8 HIGH
+     Title: nan
+     Category: verifier
+
+ 25. CVE-2016-4557
+     CVSS: 7.8 HIGH
+     Title: nan
+     Category: verifier
+
+ 26. CVE-2016-2383
+     CVSS: 5.5 MEDIUM
+     Title: nan
+     Category: verifier
+
+======================================================================
+TOTALE: 26 CVE con category='verifier' SOLO
+======================================================================
