@@ -37,16 +37,26 @@ if [[ -f "$old_config" ]]; then
     if [[ -n "$old_overlay_relative" && -d "$old_overlay" ]]; then
         echo "Cleaning files from old overlay: $old_overlay"
         
-        # Find all items in old overlay (files and directories at top level)
+        # Remove only files/symlinks provided by the old overlay, never entire
+        # top-level target directories like /etc or /usr.
         cd "$old_overlay" || exit 1
-        find . -maxdepth 1 -not -name '.' -print0 | while IFS= read -r -d '' item; do
-            # Remove leading ./ from path
+
+        find . \( -type f -o -type l \) -print0 | while IFS= read -r -d '' item; do
             relative_path="${item#./}"
             target_item="$target_dir/$relative_path"
-            
-            if [[ -e "$target_item" ]]; then
-                echo "Removing old overlay item: $target_item"
-                rm -rf "$target_item"
+
+            if [[ -e "$target_item" || -L "$target_item" ]]; then
+                echo "Removing old overlay file: $target_item"
+                rm -f "$target_item"
+            fi
+        done
+
+        # Prune now-empty directories that came from the old overlay.
+        find . -depth -type d -not -name '.' -print0 | while IFS= read -r -d '' dir; do
+            relative_dir="${dir#./}"
+            target_subdir="$target_dir/$relative_dir"
+            if [[ -d "$target_subdir" ]]; then
+                rmdir "$target_subdir" 2>/dev/null || true
             fi
         done
         
