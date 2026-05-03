@@ -1,0 +1,118 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {chapter}{\numberline {1}Introduction}{3}{chapter.1}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.0.1}eBPF Background}{3}{subsection.1.0.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.0.2}The BPF Verifier}{3}{subsection.1.0.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.0.3}Testing Environment}{4}{subsection.1.0.3}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.1}Generic Buildroot/QEMU testing workflow.}{4}{lstlisting.1.1}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.2}Static compilation of a PoC.}{4}{lstlisting.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.0.4}VM Configuration}{4}{subsection.1.0.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1.1}{\ignorespaces Baseline testing environment.}}{5}{table.1.1}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.3}QEMU memory configuration used for CVE-2023-39191.}{5}{lstlisting.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.0.5}Result Interpretation}{5}{subsection.1.0.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1.2}{\ignorespaces CVE-specific testing requirements and outcomes.}}{5}{table.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {2}Vulnerabilities}{6}{chapter.2}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {2.1}CVE-2023-39191}{6}{section.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.1}Overview}{6}{subsection.2.1.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2.1}{\ignorespaces Summary of CVE-2023-39191.}}{6}{table.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.2}Vulnerability Analysis}{6}{subsection.2.1.2}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.1}Overlapping dynptr layout used by the tested exploit.}{6}{lstlisting.2.1}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.2}Core trigger sequence.}{7}{lstlisting.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.3}Exploit Primitive}{7}{subsection.2.1.3}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.3}Verifier/runtime divergence.}{7}{lstlisting.2.3}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.4}Abstract exploit interface.}{8}{lstlisting.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.4}Exploit Architecture}{8}{subsection.2.1.4}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.5}High-level BPF payload flow.}{8}{lstlisting.2.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.5}From OOB Primitive to Root}{9}{subsection.2.1.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Adaptive Memory Calibration}{9}{subsection.2.1.5}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.6}Adaptive calibration output.}{9}{lstlisting.2.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Credential Spray}{9}{lstnumber.2.6.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Credential Scan}{10}{lstnumber.2.6.5}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.7}Credential signature searched by the exploit.}{10}{lstlisting.2.7}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.8}Credential discovery output.}{10}{lstlisting.2.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Credential Overwrite}{10}{lstnumber.2.8.2}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.9}Credential overwrite strategy.}{10}{lstlisting.2.9}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.10}Credential overwrite verification.}{10}{lstlisting.2.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Root Shell Creation}{10}{lstnumber.2.10.1}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.11}SUID payload entry.}{10}{lstlisting.2.11}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.12}Final result.}{10}{lstlisting.2.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.6}Experimental Results}{11}{subsection.2.1.6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces Exploit execution log for CVE-2023-39191.}}{11}{figure.2.1}\protected@file@percent }
+\newlabel{fig:log-2023-39191}{{2.1}{11}{Exploit execution log for CVE-2023-39191}{figure.2.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces CVE-2023-39191 exploitation path.}}{12}{figure.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.7}Comparison with Previous eBPF Exploits}{12}{subsection.2.1.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2.2}{\ignorespaces Exploit-level parallelism between CVE-2023-2163 and CVE-2023-39191.}}{12}{table.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.8}Patch and Mitigation}{13}{subsection.2.1.8}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.13}Conceptual model of the fix.}{13}{lstlisting.2.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.9}Security Impact}{13}{subsection.2.1.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2.2}CVE-2024-42072}{14}{section.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.1}Overview}{14}{subsection.2.2.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2.3}{\ignorespaces Summary of CVE-2024-42072.}}{14}{table.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.2}Technical Background: \texttt  {may\_goto}}{14}{subsection.2.2.2}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.14}Expected \texttt  {may\_goto} semantics.}{14}{lstlisting.2.14}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.15}Simplified \texttt  {may\_goto} expansion.}{14}{lstlisting.2.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.3}Vulnerable Code Logic}{15}{subsection.2.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Bug 1: Incorrect Negative Offset Patching}{15}{subsection.2.2.3}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.16}Vulnerable offset calculation.}{15}{lstlisting.2.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Bug 2: Unsafe State Pruning}{15}{lstnumber.-3.2}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.17}Simplified vulnerable pruning logic.}{15}{lstlisting.2.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.4}Exploit Technical Background}{15}{subsection.2.2.4}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.18}Minimal exploit structure.}{16}{lstlisting.2.18}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.19}Buggy runtime expansion.}{16}{lstlisting.2.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.5}Exploit Execution}{16}{subsection.2.2.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces Exploit execution log for CVE-2024-42072.}}{17}{figure.2.3}\protected@file@percent }
+\newlabel{fig:log-2024-42072}{{2.3}{17}{Exploit execution log for CVE-2024-42072}{figure.2.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.6}Impact Analysis}{17}{subsection.2.2.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.7}Patch and Mitigation}{18}{subsection.2.2.7}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.20}Conceptual corrected offset calculation.}{18}{lstlisting.2.20}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.21}Conceptual model of the pruning fix.}{18}{lstlisting.2.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.8}Security Impact}{18}{subsection.2.2.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2.3}CVE-2024-45020}{19}{section.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.1}Overview}{19}{subsection.2.3.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2.4}{\ignorespaces Summary of CVE-2024-45020.}}{19}{table.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.2}Vulnerability Analysis}{19}{subsection.2.3.2}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.22}Simplified vulnerable stacksafe logic.}{19}{lstlisting.2.22}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.23}Stack-depth mismatch causing the bug.}{20}{lstlisting.2.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.3}Exploit Primitive}{20}{subsection.2.3.3}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.24}False pruning effect.}{20}{lstlisting.2.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.4}Exploit Architecture}{21}{subsection.2.3.4}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.25}High-level exploit model.}{21}{lstlisting.2.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.5}Experimental Results}{21}{subsection.2.3.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces Exploit execution log for CVE-2024-45020.}}{22}{figure.2.4}\protected@file@percent }
+\newlabel{fig:log-2024-45020}{{2.4}{22}{Exploit execution log for CVE-2024-45020}{figure.2.4}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.26}Unprivileged failure point.}{23}{lstlisting.2.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.6}Comparison with Previous eBPF Exploits}{23}{subsection.2.3.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2.5}{\ignorespaces Exploit-level parallelism between CVE-2023-2163 and CVE-2024-45020.}}{24}{table.2.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.7}Patch and Mitigation}{24}{subsection.2.3.7}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.27}Conceptual model of the fix.}{24}{lstlisting.2.27}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.8}Security Impact}{25}{subsection.2.3.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2.4}CVE-2024-58100}{26}{section.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.1}Overview}{26}{subsection.2.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2.6}{\ignorespaces Summary of CVE-2024-58100.}}{26}{table.2.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.2}Vulnerable Code Logic}{26}{subsection.2.4.2}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.28}Vulnerable high-level pattern.}{27}{lstlisting.2.28}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.3}Special Environment for CVE-2024-58100}{27}{subsection.2.4.3}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.29}Capabilities assigned by S99exploit.}{28}{lstlisting.2.29}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.4}Exploit Primitive}{28}{subsection.2.4.4}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.30}\texttt  {pipe\_buffer} allocation size.}{28}{lstlisting.2.30}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.31}Targeted corruption.}{28}{lstlisting.2.31}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.5}Exploit Architecture}{29}{subsection.2.4.5}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.32}Simplified BPF exploit logic.}{29}{lstlisting.2.32}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.33}UAF confirmation value.}{29}{lstlisting.2.33}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.6}Experimental Results}{29}{subsection.2.4.6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2.5}{\ignorespaces Exploit execution log for CVE-2024-58100.}}{30}{figure.2.5}\protected@file@percent }
+\newlabel{fig:log-2024-58100}{{2.5}{30}{Exploit execution log for CVE-2024-58100}{figure.2.5}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.34}Observed UAF confirmation.}{30}{lstlisting.2.34}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.35}Final chain validated through root fallback.}{30}{lstlisting.2.35}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.7}Comparison with Previous eBPF Exploits}{31}{subsection.2.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.8}Patch and Mitigation}{31}{subsection.2.4.8}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.36}Conceptual model of the fix.}{31}{lstlisting.2.36}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.9}Security Impact}{32}{subsection.2.4.9}\protected@file@percent }
+\xdef \mintedoldcachechecksum{\detokenize{\minted@cachechecksum }}
+\gdef \@abspage@last{33}
