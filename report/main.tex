@@ -103,7 +103,22 @@
 
     \chapter{Introduction}
 
-    \subsection{eBPF Background}
+    \section{Executive Summary}
+
+    This report analyzes four Linux eBPF verifier vulnerabilities and evaluates how a \textbf{mismatch between the verifier's abstract state and runtime execution} can become a concrete security failure. Each vulnerability was reproduced in an \textbf{isolated Buildroot/QEMU environment} using a kernel version and configuration adapted to the target bug.
+
+    The \textbf{main experimental results} are:
+
+    \begin{itemize}
+        \item \textbf{CVE-2023-39191}: corrupted \texttt{dynptr} tracking was converted into an \textbf{OOB read/write primitive and full local privilege escalation} through credential corruption;
+        \item \textbf{CVE-2024-42072}: incorrect \texttt{may\_goto} transformation produced a \textbf{deterministic kernel infinite loop and denial of service};
+        \item \textbf{CVE-2024-45020}: unsafe verifier pruning disclosed \textbf{direct-map pointers and kernel heap-layout information}, but did not reveal the randomized kernel-text base;
+        \item \textbf{CVE-2024-58100}: a stale packet-pointer UAF was \textbf{escalated to root through SLUB freelist poisoning} and controlled placement of a \texttt{pipe\_buffer}.
+    \end{itemize}
+
+    These results show that verifier bugs do not share a single exploitation model. Stale pointers, incorrect stack tracking and unsafe control-flow transformations produce \textbf{different primitives and require different post-exploitation strategies}. For this reason, the report distinguishes the \textbf{vulnerability}, the \textbf{primitive obtained from it}, and the \textbf{environment-specific techniques} required to reach the final impact.
+
+    \section{eBPF Background}
 
     Extended Berkeley Packet Filter (eBPF) is a Linux kernel technology that \textbf{allows small programs to be loaded dynamically and executed inside the kernel} without writing or loading traditional kernel modules. Modern eBPF is widely used for networking, tracing, observability and security monitoring because it provides programmable hooks while preserving near-native execution performance.
 
@@ -120,7 +135,7 @@
 
     This report focuses on vulnerabilities where the \textbf{verifier accepts programs whose runtime behavior violates the safety assumptions} checked during static analysis. This class of bugs is particularly relevant because eBPF code runs in kernel context after approval. Therefore, a verifier mistake can become a direct \textbf{kernel memory primitive} or a \textbf{denial-of-service condition}.
 
-    \subsection{The BPF Verifier}
+    \section{The BPF Verifier}
 
     The BPF Verifier is the \textbf{security boundary between user-controlled BPF bytecode and privileged kernel execution}. Its purpose is to reject programs that may access invalid memory, use unsafe pointer arithmetic, leak kernel pointers, execute unbounded loops or call helpers with invalid arguments.
 
@@ -138,37 +153,20 @@
 
     \begin{itemize}
         \item \textbf{CVE-2023-39191}: stale \texttt{dynptr} stack tracking produces an OOB read/write primitive.
-        \item \textbf{CVE-2024-58100}: missing EXT-program compatibility check on \texttt{changes\_pkt\_data} leaves a stale packet pointer alive.
+        \item \textbf{CVE-2024-58100}: a missing EXT-program compatibility check leaves a stale packet pointer alive; SLUB freelist poisoning converts the resulting UAF into full LPE in the test environment.
         \item \textbf{CVE-2024-42072}: incorrect \texttt{may\_goto} handling turns a bounded loop into an infinite kernel loop.
         \item \textbf{CVE-2024-45020}: false pruning in \texttt{stacksafe()} produces a verifier-side OOB read and an information leak.
     \end{itemize}
 
-    \subsection{Testing Environment}
+    \section{Testing Environment}
 
     All experiments were executed inside a \textbf{controlled Buildroot/QEMU environment}. Buildroot was used to generate \textbf{minimal Linux images} with specific vulnerable kernel versions and only the userspace components required to compile, load and trigger the BPF programs. QEMU was used to execute the generated images in an isolated virtual machine.
 
     This setup provides three important advantages. First, each CVE can be tested against the exact kernel version required by the vulnerability. Second, the environment is \textbf{deterministic enough to reproduce heap layout} and memory placement assumptions. Third, crashes, soft lockups or kernel panics remain \textbf{isolated inside the VM}.
 
-    The general workflow used for each PoC was:
+    PoC and exploit binaries were compiled statically with Buildroot's cross-toolchain and deployed through the corresponding filesystem overlay. This avoided dependency issues inside the minimal guest image and made each binary available when the VM booted.
 
-    \begin{lstlisting}[caption={Generic Buildroot/QEMU testing workflow.}]
-    Compile the PoC or exploit statically.
-    Copy the binary into the Buildroot overlay.
-    Build the selected vulnerable kernel image.
-    Boot the image in QEMU.
-    Execute the PoC inside the VM.
-    Compare the result with the expected vulnerable behavior.
-    \end{lstlisting}
-
-    PoC binaries were \textbf{compiled statically to avoid dependency issues} inside the minimal Buildroot filesystem:
-
-    \begin{lstlisting}[language=bash, caption={Static compilation of a PoC.}]
-    buildroot/output/host/bin/x86_64-buildroot-linux-gnu-gcc -o CVEs/CVE-202x-xxxx/exploit_overlay/root/poc CVEs/CVE-202x-xxxx/src/poc.c
-    \end{lstlisting}
-
-    The resulting executable was copied into the exploit overlay before building the image, so that it became available inside the VM at boot time.
-
-    \subsection{VM Configuration}
+    \section{VM Configuration}
 
     The VM configuration was \textbf{adapted to the requirements of each CVE}. Some vulnerabilities only require a minimal amount of memory and a specific vulnerable kernel version. Others, especially CVE-2023-39191 and CVE-2024-58100, require additional \textbf{control over memory layout, kernel symbols, BPF permissions} and userspace capabilities.
 
@@ -204,7 +202,19 @@
 
     In this configuration, \textbf{address randomization was disabled} to keep the \textbf{memory layout stable} during exploit development and testing. In particular, KASLR and \texttt{RANDOMIZE\_MEMORY} were disabled. This does not remove the vulnerability itself, but makes the exploit path reproducible enough to study the primitive, calibrate memory pressure and verify the credential overwrite.
 
-    \subsection{Result Interpretation}
+    \section{Reproduction Workflow}
+
+    Although kernel versions and exploit-specific options differ, each experiment follows the same \textbf{general reproduction procedure}:
+
+    \begin{enumerate}
+        \item \textbf{select the vulnerable kernel version} and enable the BPF, debugging and hardening options required by the target CVE;
+        \item \textbf{compile the kernel} and generate the corresponding minimal Buildroot image;
+        \item \textbf{compile and deploy the PoC or exploit} with the Buildroot cross-toolchain, support scripts and required capabilities;
+        \item \textbf{boot the image in QEMU} with the documented CPU and memory settings, then execute the binary from the intended user context;
+        \item \textbf{collect and compare the results} using verifier output, kernel logs and userspace evidence of the expected primitive or failure condition;
+    \end{enumerate}
+
+    \section{Result Interpretation}
 
     The outcome of each experiment was interpreted according to the vulnerability class.
 
@@ -212,7 +222,7 @@
 
     For availability bugs, such as CVE-2024-42072, success was defined by the ability to \textbf{trigger the expected kernel soft lockup} after loading and executing the crafted BPF program.
 
-    For privilege-escalation bugs, success required demonstrating a transition from a non-root execution context to root privileges. In CVE-2023-39191, this was achieved by locating and overwriting a live \texttt{struct cred} object and creating a SUID-root shell payload.
+    For privilege-escalation bugs, success required demonstrating a transition from a non-root execution context to root privileges. In CVE-2023-39191, this was achieved by locating and overwriting a live \texttt{struct cred} object. In CVE-2024-58100, the stale packet-pointer primitive was instead used to poison the SLUB freelist, redirect a \texttt{pipe\_buffer} allocation into controlled userspace memory and create a SUID-root shell through a \texttt{modprobe\_path} overwrite.
 
     The following table summarizes the main experimental requirements for the analyzed CVEs:
 
@@ -224,11 +234,11 @@
     \hline
     CVE-2023-39191 & 9 GiB RAM, stable memory layout, unprivileged BPF enabled & Full LPE through OOB read/write and \texttt{struct cred} overwrite \\
     \hline
-    CVE-2024-58100 & Boot-time \texttt{S99exploit} setup, BPF/network capabilities, readable kernel symbols & Stable UAF R/W primitive; final unprivileged race not fully reliable \\
+    CVE-2024-58100 & BPF/network capabilities, readable kernel symbols, SLUB freelist hardening and SMAP/SMEP disabled & Full LPE through SLUB freelist poisoning and controlled \texttt{pipe\_buffer} allocation \\
     \hline
     CVE-2024-42072 & Vulnerable 6.9 kernel with \texttt{may\_goto} support & Kernel soft lockup / DoS \\
     \hline
-    CVE-2024-45020 & BPF-capable execution context, verifier pruning trigger & Information leak / KASLR bypass; unprivileged exploitation blocked in tests \\
+    CVE-2024-45020 & BPF-capable execution context, verifier pruning trigger, \texttt{CONFIG\_INIT\_STACK\_NONE=y} & Direct-map pointer and heap-layout disclosure; no complete kernel-text KASLR bypass \\
     \hline
     \end{tabularx}
     \caption{CVE-specific testing requirements and outcomes.}
