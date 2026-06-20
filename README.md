@@ -50,13 +50,6 @@ s344024_Romano_Simone/
 │   ├── CVE-2024-45020/src/
 │   └── CVE-2024-58100/src/             
 │
-├── CVE/                                ← CVE list analysis scripts and data
-│   ├── eBPF_CVEs_new_exploits.csv
-│   ├── list_verifier_cve.py
-│   ├── list_verifier_only_cve.py
-│   ├── verifier_cve_list.txt
-│   └── verifier_only_cve_list.txt
-│
 ├── report/                             ← LaTeX report
 │   ├── main.tex
 │   ├── compile.sh
