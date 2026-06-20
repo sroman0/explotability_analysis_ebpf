@@ -45,10 +45,10 @@ s344024_Romano_Simone/
 │           └── src/
 │
 ├── exploits/                           ← Standalone exploit sources (outside Buildroot flow)
-│   ├── CVE-2023-39191/src/             ← poc.c, exploit.c (full LPE)
+│   ├── CVE-2023-39191/src/             ← poc.c, exploit.c 
 │   ├── CVE-2024-42072/src/
 │   ├── CVE-2024-45020/src/
-│   └── CVE-2024-58100/src/             ← poc.c, exploit.c + .txt run logs
+│   └── CVE-2024-58100/src/             
 │
 ├── CVE/                                ← CVE list analysis scripts and data
 │   ├── eBPF_CVEs_new_exploits.csv
@@ -86,7 +86,7 @@ s344024_Romano_Simone/
 | CVE-2023-39191 | ≤ 6.1.19 / ≤ 6.2.6 | Dynptr type confusion (OOB via overlapping dynptrs on BPF stack) | Arbitrary OOB R/W via corrupted dynptr size | Full LPE (adaptive calibration + cred spray) |
 | CVE-2024-42072 | < 6.10.2 | Verifier register state leak across subprog calls | OOB read primitive | Primitive confirmed, LPE in progress |
 | CVE-2024-45020 | < 6.11 | Incorrect bounds check on stack-allocated dynptr | OOB R/W potential | PoC confirmed, exploitation analysis ongoing |
-| CVE-2024-58100 | 5.6 – 6.6.89 / 6.7 – 6.12.24 | Verifier omits `changes_pkt_data` propagation through GLOBAL subprog → stale `PTR_TO_PACKET` after `bpf_skb_change_head` | UAF R/W on freed `kmalloc-1024` slab | UAF R/W confirmed, PE blocked by BPF preempt-OFF + per-CPU freelist isolation |
+| CVE-2024-58100 | 5.6 – 6.6.89 / 6.7 – 6.12.24 | Verifier omits `changes_pkt_data` propagation through GLOBAL subprog → stale `PTR_TO_PACKET` after `bpf_skb_change_head` | UAF R/W on freed `kmalloc-1024` slab | UAF R/W confirmed, full LPE(modprobe_path tampered) |
 
 ---
 
